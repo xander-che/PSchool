@@ -10,4 +10,4 @@ services:
       - 27017:27017
     volumes:
       - /data/db
-    command: --WiredTigerCacheSizeGB 1.5
+    command: --wiredTigerCacheSizeGB 1.5
