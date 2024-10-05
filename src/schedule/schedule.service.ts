@@ -20,10 +20,7 @@ export class ScheduleService {
 	}
 
 	async updateEntry(dto: FindEntryDto) {
-		if (this.getEntry(dto) != null) {
-			const findedEntry = await this.getEntry(dto);
-			findedEntry.updateOne();
-		}
+		this.scheduleModel.updateOne(dto);
 	}
 
 	async deleteEntry(dto: FindEntryDto) {
