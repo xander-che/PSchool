@@ -1,4 +1,4 @@
 export class FindRoomDto {
-	id: number;
+	id: string;
 	type: string;
 }

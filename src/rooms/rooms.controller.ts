@@ -1,4 +1,22 @@
-import { Controller } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Param, Patch, Post } from '@nestjs/common';
+import { Rooms } from './models/rooms.model';
+import { FindRoomDto } from './dto/find-room.dto';
 
 @Controller('rooms')
-export class RoomsController {}
+export class RoomsController {
+	@Post('create')
+	async create(@Body() dto: Omit<Rooms, 'id'>) {}
+
+	@Get(':id')
+	async get(@Param('id') id: string) {}
+
+	@Delete(':id')
+	async delete(@Param('id') id: string) {}
+
+	@Patch(':id')
+	async patch(@Param('id') id: string, @Body() dto: Rooms) {}
+
+	@HttpCode(200)
+	@Post()
+	async find(@Body() dto: FindRoomDto) {}
+}

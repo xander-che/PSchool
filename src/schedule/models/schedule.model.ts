@@ -6,7 +6,10 @@ export type ScheduleDocument = HydratedDocument<Schedule>;
 @Schema()
 export class Schedule {
 	@Prop({ require: true })
-	id: number;
+	id: string;
+
+	@Prop({ require: true })
+	roomNumber: string;
 
 	@Prop({ require: true })
 	bookingDate: Date;

@@ -13,15 +13,15 @@ export class RoomsService {
 		return newRoom.save();
 	}
 
-	async getById(id: number) {
+	async getById(id: string) {
 		return this.roomsModel.findOne({ id });
 	}
 
-	async updateById(id: number) {
+	async updateById(id: string) {
 		this.roomsModel.updateOne({ id });
 	}
 
-	async deleteById(id: number) {
+	async deleteById(id: string) {
 		this.roomsModel.deleteOne({ id });
 	}
 }

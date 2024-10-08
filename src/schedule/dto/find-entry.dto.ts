@@ -1,4 +1,5 @@
 export class FindEntryDto {
-	id: number;
+	id: string;
+	roomNumber: string;
 	date: Date;
 }
