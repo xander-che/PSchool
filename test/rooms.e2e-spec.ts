@@ -35,6 +35,16 @@ describe('AppController (e2e)', () => {
 			});
 	});
 
+	it('/rooms/:id (DELETE)', () => {
+		return request(app.getHttpServer())
+			.delete('/rooms/' + createdId)
+			.expect(200)
+			.then(({ body }: request.Response) => {
+				createdId = body.id;
+				expect(createdId).toBeDefined();
+			});
+	});
+
 	afterAll(() => {
 		disconnect();
 	});
