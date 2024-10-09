@@ -13,11 +13,11 @@ export class ScheduleController {
 	@Get(':id')
 	async get(@Param() id: string) {}
 
-	@Delete(':id')
-	async delete(@Param('id') id: string) {}
-
 	@Patch('id')
 	async patch(@Param('id') id: string, @Body() dto: Schedule) {}
+
+	@Delete(':id')
+	async delete(@Param('id') id: string) {}
 
 	@HttpCode(200)
 	@Post()

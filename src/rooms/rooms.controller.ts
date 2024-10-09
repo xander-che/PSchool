@@ -13,11 +13,11 @@ export class RoomsController {
 	@Get(':id')
 	async get(@Param('id') id: string) {}
 
-	@Delete(':id')
-	async delete(@Param('id') id: string) {}
-
 	@Patch(':id')
 	async patch(@Param('id') id: string, @Body() dto: Rooms) {}
+
+	@Delete(':id')
+	async delete(@Param('id') id: string) {}
 
 	@HttpCode(200)
 	@Post()
