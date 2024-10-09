@@ -3,6 +3,7 @@ import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { AppModule } from '../src/app.module';
 import { FindRoomDto } from 'src/rooms/dto/find-room.dto';
+import { Types, disconnect } from 'mongoose';
 
 const testDto: FindRoomDto = {
 	id: '001',
@@ -32,5 +33,9 @@ describe('AppController (e2e)', () => {
 				expect(createdId).toBeDefined();
 				done();
 			});
+	});
+
+	afterAll(() => {
+		disconnect();
 	});
 });
