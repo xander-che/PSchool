@@ -1,9 +1,12 @@
 import { Body, Controller, Delete, Get, HttpCode, Param, Patch, Post } from '@nestjs/common';
 import { Rooms } from './models/rooms.model';
 import { FindRoomDto } from './dto/find-room.dto';
+import { RoomsService } from './rooms.service';
 
 @Controller('rooms')
 export class RoomsController {
+	constructor(private readonly roomsService: RoomsService) {}
+
 	@Post('create')
 	async create(@Body() dto: Omit<Rooms, 'id'>) {}
 
