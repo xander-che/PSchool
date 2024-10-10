@@ -7,6 +7,8 @@ import { RoomsController } from './rooms/rooms.controller';
 import { ScheduleController } from './schedule/schedule.controller';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ScheduleService } from './schedule/schedule.service';
+import { RoomsService } from './rooms/rooms.service';
 
 @Module({
 	imports: [
@@ -16,6 +18,6 @@ import { MongooseModule } from '@nestjs/mongoose';
 		MongooseModule.forRoot('mongodb://localhost/simple-airbnb-db'),
 	],
 	controllers: [AppController, RoomsController, ScheduleController],
-	providers: [AppService],
+	providers: [AppService, RoomsService, ScheduleService],
 })
 export class AppModule {}
