@@ -7,7 +7,7 @@ import { Types, disconnect } from 'mongoose';
 
 const testDto: FindRoomDto = {
 	id: '001',
-	type: '1 room',
+	type: 'suite',
 };
 
 describe('AppController (e2e)', () => {
