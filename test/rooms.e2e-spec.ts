@@ -25,7 +25,7 @@ describe('AppController (e2e)', () => {
 
 	it('/rooms/createRoom (POST)', async (done) => {
 		return request(app.getHttpServer())
-			.post('/rooms/createRoom')
+			.post('/rooms/createdRooms')
 			.send(testDto)
 			.expect(201)
 			.then(({ body }: request.Response) => {
