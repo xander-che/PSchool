@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument } from 'mongoose';
+import { HydratedDocument, Schema as MSchema } from 'mongoose';
+import { Rooms } from 'src/rooms/models/rooms.model';
 
 export type ScheduleDocument = HydratedDocument<Schedule>;
 
@@ -8,8 +9,8 @@ export class Schedule {
 	@Prop({ require: true })
 	id: string;
 
-	@Prop({ require: true })
-	roomNumber: string;
+	@Prop({ type: MSchema.Types.ObjectId, ref: Rooms.name })
+	roomId: Rooms;
 
 	@Prop({ require: true })
 	bookingDate: Date;
