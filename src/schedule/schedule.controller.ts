@@ -5,8 +5,6 @@ import { ScheduleService } from './schedule.service';
 
 @Controller('schedule')
 export class ScheduleController {
-	constructor(private readonly scheduleService: ScheduleService) {}
-
 	@Post('create')
 	async create(@Body() dto: Omit<Schedule, 'id'>) {}
 
