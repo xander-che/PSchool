@@ -23,7 +23,7 @@ describe('AppController (e2e)', () => {
 		await app.init();
 	});
 
-	it('/rooms/createRoom (POST)', async (done) => {
+	it('/rooms/createdRooms (POST)', async (done) => {
 		return request(app.getHttpServer())
 			.post('/rooms/createdRooms')
 			.send(testDto)
