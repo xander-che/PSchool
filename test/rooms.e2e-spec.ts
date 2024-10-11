@@ -3,7 +3,7 @@ import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { AppModule } from '../src/app.module';
 import { FindRoomDto } from 'src/rooms/dto/find-room.dto';
-import { Types, disconnect } from 'mongoose';
+import { disconnect } from 'mongoose';
 
 const testDto: FindRoomDto = {
 	_id: '001',
@@ -13,6 +13,7 @@ const testDto: FindRoomDto = {
 describe('AppController (e2e)', () => {
 	let app: INestApplication;
 	let createdId: string;
+	let createdType: string;
 
 	beforeEach(async () => {
 		const moduleFixture: TestingModule = await Test.createTestingModule({
