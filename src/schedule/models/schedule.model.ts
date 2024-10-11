@@ -7,7 +7,7 @@ export type ScheduleDocument = HydratedDocument<Schedule>;
 @Schema()
 export class Schedule {
 	@Prop({ require: true })
-	id: string;
+	_id: string;
 
 	// @Prop({ type: MSchema.Types.ObjectId, ref: Rooms.name })
 	// roomId: Rooms;
