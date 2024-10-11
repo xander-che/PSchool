@@ -5,8 +5,11 @@ import { RoomsService } from './rooms.service';
 
 @Controller('rooms')
 export class RoomsController {
+	// @Post('create')
+	// async create(@Body() dto: Omit<Rooms, 'id'>) {}
+
 	@Post('create')
-	async create(@Body() dto: Omit<Rooms, 'id'>) {}
+	async create(@Body() dto: Rooms) {}
 
 	@Get(':id')
 	async get(@Param('id') id: string) {}
