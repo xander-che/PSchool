@@ -9,8 +9,8 @@ export class Schedule {
 	@Prop({ require: true })
 	id: string;
 
-	@Prop({ type: MSchema.Types.ObjectId, ref: Rooms.name })
-	roomId: Rooms;
+	// @Prop({ type: MSchema.Types.ObjectId, ref: Rooms.name })
+	// roomId: Rooms;
 
 	@Prop({ require: true })
 	bookingDate: Date;
