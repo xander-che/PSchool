@@ -3,8 +3,9 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ScheduleModule } from './schedule/schedule.module';
 import { RoomsModule } from './rooms/rooms.module';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
+import { getMongoConfig } from './rooms/configs/mongo.config';
 
 @Module({
 	imports: [
@@ -12,6 +13,11 @@ import { MongooseModule } from '@nestjs/mongoose';
 		RoomsModule,
 		ConfigModule.forRoot(),
 		MongooseModule.forRoot('mongodb://localhost:27017/simple-airbnb-db'),
+		MongooseModule.forRootAsync({
+			imports: [ConfigModule],
+			inject: [ConfigService],
+			useFactory: getMongoConfig,
+		}),
 	],
 	controllers: [AppController],
 	providers: [AppService],
