@@ -6,7 +6,7 @@ export type RoomsDocument = HydratedDocument<Rooms>;
 @Schema()
 export class Rooms {
 	@Prop({ require: true, unique: true })
-	_id: string;
+	id: string;
 
 	@Prop({ require: true })
 	type: string;
