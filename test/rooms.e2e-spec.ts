@@ -6,7 +6,7 @@ import { FindRoomDto } from 'src/rooms/dto/find-room.dto';
 import { disconnect } from 'mongoose';
 
 const testDto: FindRoomDto = {
-	_id: '001',
+	id: '001',
 	type: 'suite',
 };
 
@@ -30,7 +30,7 @@ describe('AppController (e2e)', () => {
 			.send(testDto)
 			.expect(201)
 			.then(({ body }: request.Response) => {
-				createdId = body._id;
+				createdId = body.id;
 				expect(createdId).toBeDefined();
 				done();
 			});
