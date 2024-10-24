@@ -13,7 +13,6 @@ const testDto: FindRoomDto = {
 describe('AppController (e2e)', () => {
 	let app: INestApplication;
 	let createdId: string;
-	let createdType: string;
 
 	beforeEach(async () => {
 		const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -24,7 +23,7 @@ describe('AppController (e2e)', () => {
 		await app.init();
 	});
 
-	it('/rooms/create (POST)', async (done) => {
+	it('/rooms/create (POST) - sucsess', async (done) => {
 		return request(app.getHttpServer())
 			.post('/rooms/create')
 			.send(testDto)
@@ -40,6 +39,17 @@ describe('AppController (e2e)', () => {
 		return request(app.getHttpServer())
 			.delete('/rooms/' + createdId)
 			.expect(200);
+	});
+
+	it('/rooms/create (POST) - fail', async (done) => {
+		return request(app.getHttpServer())
+			.post('/rooms/create')
+			.send({ ...testDto, id: 1 })
+			.expect(400)
+			.then(({ body }: request.Response) => {
+				console.log(body);
+				done();
+			});
 	});
 
 	afterAll(() => {

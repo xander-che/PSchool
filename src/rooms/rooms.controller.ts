@@ -9,6 +9,8 @@ import {
 	Param,
 	Patch,
 	Post,
+	UsePipes,
+	ValidationPipe,
 } from '@nestjs/common';
 import { Rooms } from './models/rooms.model';
 import { FindRoomDto } from './dto/find-room.dto';
@@ -52,6 +54,7 @@ export class RoomsController {
 		}
 	}
 
+	@UsePipes(new ValidationPipe())
 	@HttpCode(200)
 	@Post()
 	async find(@Body() dto: FindRoomDto) {}

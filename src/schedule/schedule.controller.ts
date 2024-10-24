@@ -1,4 +1,15 @@
-import { Body, Controller, Delete, Get, HttpCode, Param, Patch, Post } from '@nestjs/common';
+import {
+	Body,
+	Controller,
+	Delete,
+	Get,
+	HttpCode,
+	Param,
+	Patch,
+	Post,
+	UsePipes,
+	ValidationPipe,
+} from '@nestjs/common';
 import { Schedule } from './models/schedule.model';
 import { FindEntryDto } from './dto/find-entry.dto';
 import { ScheduleService } from './schedule.service';
@@ -17,6 +28,7 @@ export class ScheduleController {
 	@Delete(':id')
 	async delete(@Param('id') id: string) {}
 
+	@UsePipes(new ValidationPipe())
 	@HttpCode(200)
 	@Post()
 	async find(@Body() dto: FindEntryDto) {}
