@@ -16,6 +16,8 @@ import { Rooms } from './models/rooms.model';
 import { FindRoomDto } from './dto/find-room.dto';
 import { RoomsService } from './rooms.service';
 import { ROOM_NOT_FOUND } from './rooms.constants';
+import { Role } from 'src/roles/role.enum';
+import { Roles } from 'src/roles/roles.decorator';
 
 @Controller('rooms')
 export class RoomsController {
@@ -24,6 +26,7 @@ export class RoomsController {
 	// async create(@Body() dto: Omit<Rooms, 'id'>) {}
 
 	@Post('create')
+	@Roles(Role.Admin)
 	async create(@Body() dto: Rooms) {
 		return this.roomsService.createRoom(dto);
 	}
@@ -38,6 +41,7 @@ export class RoomsController {
 	}
 
 	@Patch(':id')
+	@Roles(Role.Admin)
 	async patch(@Param('id') id: string, @Body() dto: Rooms) {
 		const updatedDoc = await this.roomsService.updateById(id);
 		if (!updatedDoc) {
@@ -47,6 +51,7 @@ export class RoomsController {
 	}
 
 	@Delete(':id')
+	@Roles(Role.Admin)
 	async delete(@Param('id') id: string) {
 		const deletedDoc = await this.roomsService.deleteById(id);
 		if (!deletedDoc) {
