@@ -8,22 +8,37 @@ import { FindEntryDto } from './dto/find-entry.dto';
 export class ScheduleService {
 	constructor(@InjectModel(Schedule.name) private scheduleModel: Model<ScheduleDocument>) {}
 
-	async getEntry(dto: FindEntryDto) {
-		return this.scheduleModel.findOne(dto);
+	async getEntry(id: FindEntryDto['roomId'], date: FindEntryDto['date']) {
+		return this.scheduleModel.findOne({ id, date });
 	}
 
-	async createEntry(dto: FindEntryDto) {
-		if (this.getEntry(dto) == null) {
+	async createEntry(dto: Schedule) {
+		if (this.getEntry(dto.id, dto.bookingDate) == null) {
 			const newEntry = new this.scheduleModel(dto);
 			return newEntry.save();
 		}
 	}
 
-	async updateEntry(dto: FindEntryDto) {
-		this.scheduleModel.updateOne(dto);
+	async updateEntry(id: FindEntryDto['roomId'], date: FindEntryDto['date']) {
+		return this.scheduleModel.updateOne({ id, date });
 	}
 
-	async deleteEntry(dto: FindEntryDto) {
-		this.scheduleModel.deleteOne(dto);
+	async deleteEntry(id: FindEntryDto['roomId'], date: FindEntryDto['date']) {
+		return this.scheduleModel.deleteOne({ id, date });
+	}
+
+	async getMonthStatistic(dto: FindEntryDto) {
+		return this.scheduleModel
+			.aggregate([
+				{
+					$match: {
+						bookingDate: dto.month,
+					},
+				},
+				{
+					$count: dto.roomId,
+				},
+			])
+			.exec();
 	}
 }
