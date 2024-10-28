@@ -27,7 +27,7 @@ export class RoomsController {
 
 	@Post('create')
 	@Roles(Role.Admin)
-	async create(@Body() dto: Rooms) {
+	async create(@Body() dto: FindRoomDto) {
 		return this.roomsService.createRoom(dto);
 	}
 
@@ -42,8 +42,8 @@ export class RoomsController {
 
 	@Patch(':id')
 	@Roles(Role.Admin)
-	async patch(@Param('id') id: string, @Body() dto: Rooms) {
-		const updatedDoc = await this.roomsService.updateById(id);
+	async patch(@Param('id') id: string, @Body() dto: FindRoomDto) {
+		const updatedDoc = await this.roomsService.updateById(id, dto);
 		if (!updatedDoc) {
 			throw new HttpException(ROOM_NOT_FOUND, HttpStatus.NOT_FOUND);
 		}
@@ -57,10 +57,11 @@ export class RoomsController {
 		if (!deletedDoc) {
 			throw new HttpException(ROOM_NOT_FOUND, HttpStatus.NOT_FOUND);
 		}
+		return deletedDoc;
 	}
 
-	@UsePipes(new ValidationPipe())
-	@HttpCode(200)
-	@Post()
-	async find(@Body() dto: FindRoomDto) {}
+	// @UsePipes(new ValidationPipe())
+	// @HttpCode(200)
+	// @Post()
+	// async find(@Body() dto: FindRoomDto) {}
 }

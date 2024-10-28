@@ -9,7 +9,7 @@ export class ScheduleService {
 	constructor(@InjectModel(Schedule.name) private scheduleModel: Model<ScheduleDocument>) {}
 
 	async getEntry(id: FindEntryDto['roomId'], date: FindEntryDto['date']) {
-		return this.scheduleModel.findOne({ id, date });
+		return await this.scheduleModel.findOne({ id, date });
 	}
 
 	async createEntry(dto: Schedule) {

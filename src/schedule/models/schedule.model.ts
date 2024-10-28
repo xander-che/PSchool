@@ -6,13 +6,13 @@ export type ScheduleDocument = HydratedDocument<Schedule>;
 
 @Schema()
 export class Schedule {
-	@Prop({ require: true })
+	@Prop({ required: true, unique: true })
 	id: string;
 
 	@Prop({ type: MSchema.Types.ObjectId, ref: Rooms.name })
 	roomId: Rooms;
 
-	@Prop({ require: true })
+	@Prop({ required: true })
 	bookingDate: Date;
 }
 

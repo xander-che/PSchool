@@ -14,14 +14,14 @@ export class RoomsService {
 	}
 
 	async getById(id: string) {
-		return this.roomsModel.findOne({ id });
+		return this.roomsModel.findById(id);
 	}
 
-	async updateById(id: string) {
-		return this.roomsModel.updateOne({ id });
+	async updateById(id: string, dto: FindRoomDto) {
+		return this.roomsModel.findByIdAndUpdate(id, dto, { new: true });
 	}
 
 	async deleteById(id: string) {
-		return this.roomsModel.deleteOne({ id });
+		return this.roomsModel.findByIdAndDelete(id);
 	}
 }
