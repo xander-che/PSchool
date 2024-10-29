@@ -1,14 +1,13 @@
 version: '3.8'
 services:
-    mongo:
-        image: mongo
-        container_name: mongo
-        restart: always
-        environment:
-            - MONGO_INITDB_ROOT_USERNAME=admin
-            - MONGO_INITDB_ROOT_PASSWORD=admin
-        ports:
-            - 27017:27017
-        volumes:
-            - /data/db
-        command: --wiredTigerCacheSizeGB 1.5
+  simple.airbnb:
+    image: simple-airbnb:latest
+    container_name: simple-airbnb
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+    ports:
+      - 3000:3000
+    volumes:
+      - ./.env:/C:\Users\ACHER\pschool\app\.env
